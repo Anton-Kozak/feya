@@ -1,0 +1,135 @@
+.outer-flex {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url("res://test");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    //background-color: rgb(227, 185, 255);
+    opacity: 0.8;
+}
+
+.message-wrapper {
+    background-color: rgba(221, 180, 255, 0.795);
+}
+.message {
+    color: black;
+}
+
+.button-row {
+    align-items: center;
+    justify-content: space-between;
+    // margin-left: 40;
+    // margin-right: 40;
+    margin-bottom: 20;
+}
+
+.item {
+    background-color: #fdefff;
+    border-width: 1;
+    border-color: #62006d;
+    font-size: 17;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin-left: 10;
+    margin-right: 10;
+    font-family: "CormorantGaramond-Medium";
+    padding: 15;
+}
+
+.checkbox-button {
+    border-radius: 100;
+    width: 30;
+    height: 30;
+    border-width: 1;
+}
+.inactive {
+    animation-name: button-active-transition;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    background-color: rgb(255, 130, 130);
+    border-color: rgb(255, 0, 0);
+}
+
+.active {
+    animation-name: button-inactive-transition;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    background-color: rgb(43, 148, 104);
+    border-color: rgb(0, 114, 0);
+}
+
+.difficulty-div {
+    background-color: white;
+    padding: 30;
+    border-radius: 20;
+    border-width: 2;
+    border-color: rgb(67, 2, 110);
+}
+
+.checkbox-label {
+    font-family: "CormorantGaramond-Medium";
+    color: #43026e;
+}
+
+.checkbox-task {
+    font-size: 25;
+    color: green;
+}
+
+.selected {
+    color: #7400bd;
+}
+
+.diff-button,
+.checkbox-label {
+    font-size: 25;
+    font-weight: bold;
+}
+
+.fa {
+    font-size: 25;
+}
+
+.can-see {
+    opacity: 0;
+}
+
+.submit-button {
+    background-color: rgb(43, 148, 104);
+    border-width: 1;
+    border-color: #00ff00;
+    font-size: 25;
+    color: white;
+    padding: 2;
+    font-family: "Cormorant Garamond", "CormorantGaramond-Medium";
+}
+
+@keyframes button-inactive-transition {
+    from {
+        background-color: rgb(255, 130, 130);
+        border-color: rgb(255, 0, 0);
+        border-width: 1;
+    }
+    to {
+        background-color: rgb(43, 148, 104);
+        border-color: rgb(0, 114, 0);
+        border-width: 1;
+    }
+}
+
+@keyframes button-active-transition {
+    from {
+        background-color: rgb(43, 148, 104);
+        border-color: rgb(0, 114, 0);
+        border-width: 1;
+    }
+    to {
+        background-color: rgb(255, 130, 130);
+        border-color: rgb(255, 0, 0);
+        border-width: 1;
+    }
+}

@@ -1,0 +1,8 @@
+<ns-action-bar actionBarTitle="Совет"></ns-action-bar>
+<ScrollView orientation="vertical">
+    <FlexboxLayout *ngIf="detailedTips" class="detailed-list">
+        <StackLayout class="tip" *ngFor="let tip of detailedTips">
+            <Label class="tip-label" textWrap="true" [text]="tip"></Label>
+        </StackLayout>
+    </FlexboxLayout>
+</ScrollView>

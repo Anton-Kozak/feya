@@ -1,0 +1,24 @@
+<ns-action-bar actionBarTitle="Главная страница" canGoBack='false'></ns-action-bar>
+<GridLayout rows="100, *, 70" columns="*" class="outer-flex animation">
+    <FlexboxLayout row="0" col="0">
+    </FlexboxLayout>
+    <FlexboxLayout row="1" col="0" class="inner-flex" style="background-color: transparent;">
+        <ios>
+            <Label text="Задания" class="my-button bounce" nsRouterLink="/dailyTasks"></Label>
+            <Label text="Советы" class="my-button bounce-f" nsRouterLink="/tips"></Label>
+            <Label text="Награды" class="my-button bounce-s" nsRouterLink="/achievements"></Label>
+        </ios>
+        <android>
+            <Button text="Задания" class="my-button bounce" nsRouterLink="/dailyTasks"></Button>
+            <Button text="Советы" class="my-button bounce-f" nsRouterLink="/tips"></Button>
+            <Button text="Награды" class="my-button bounce-s" nsRouterLink="/achievements"></Button>
+        </android>
+    </FlexboxLayout>
+    <FlexboxLayout row="2" col="0" class="inner-flex" style="background-color: transparent;">
+        <Label text="Контакты"></Label>
+        <Button text='Показать всё задания' (tap)="showAllTasks()"></Button>
+        <Button text='Контакты' nsRouterLink="/contacts"></Button>
+        <Button text='Сбросить всё задания' (tap)="resetTasks()"></Button>
+        <Button text='Завершить всё задания' (tap)="completeAllTasks()"></Button>
+    </FlexboxLayout>
+</GridLayout>

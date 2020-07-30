@@ -1,0 +1,23 @@
+<ns-action-bar actionBarTitle="Ваши Достижения"></ns-action-bar>
+<FlexboxLayout *ngIf="achievementsLoaded" class="flex-achievement">
+    <FlexboxLayout class="achievement-div">
+        <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[0].is_obtained === 1}">
+            <Image src="res://trophy" stretch="aspectFill"></Image>
+            <Label textWrap="true" [text]="achievements[0].title"></Label>
+        </StackLayout>
+        <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[1].is_obtained === 1}">
+            <Image src="res://trophy" stretch="aspectFill"></Image>
+            <Label textWrap="true" [text]="achievements[1].title"></Label>
+        </StackLayout>
+    </FlexboxLayout>
+    <FlexboxLayout class="achievement-div">
+        <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[2].is_obtained === 1}">
+            <Image src="res://trophy" stretch="aspectFill"></Image>
+            <Label textWrap="true" [text]="achievements[2].title"></Label>
+        </StackLayout>
+        <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[3].is_obtained === 1}">
+            <Image src="res://trophy" stretch="aspectFill"></Image>
+            <Label textWrap="true" [text]="achievements[3].title"></Label>
+        </StackLayout>
+    </FlexboxLayout>
+</FlexboxLayout>

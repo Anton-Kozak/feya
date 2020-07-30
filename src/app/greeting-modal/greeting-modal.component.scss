@@ -1,0 +1,60 @@
+.modal-body {
+    background-color: #8c7ed2
+}
+
+
+
+.text-div {
+    background-color: transparent;
+    border: 1 solid red;
+    border-radius: 20;
+    padding: 30;
+    opacity: 0;
+    animation-name: appear;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.img{
+    width: 100%;
+}
+
+.text-div Label{
+    opacity: 0;
+    font-size: 20;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    animation-name: appear;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.text-div Button{
+    // font-family: fantasy;
+    font-size: 20;
+    font-weight: bold;
+    color: black;
+    width: auto;
+    opacity: 0;
+    animation-name: appear;
+    animation-iteration-count: 1;
+    animation-delay: 3s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

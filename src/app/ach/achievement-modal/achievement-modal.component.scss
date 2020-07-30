@@ -1,0 +1,29 @@
+.modal-body {
+    background: linear-gradient(to bottom, rgb(191, 255, 252), rgb(186, 185, 255));
+}
+
+.text-div {
+    background-color: white;
+    border: 1 solid red;
+    border-radius: 20;
+    padding: 30;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.swirl-in-fwd {
+    animation-name: swirl-in-fwd;
+    animation-duration: .7s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes swirl-in-fwd {
+    0% {
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}

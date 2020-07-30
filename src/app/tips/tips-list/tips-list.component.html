@@ -1,0 +1,26 @@
+<ns-action-bar actionBarTitle="Список советов"></ns-action-bar>
+<GridLayout *ngIf="locations" tkExampleTitle tkToggleNavButton>
+    <RadListView [items]="locations" marginRight="-2">
+        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1">
+        </ListViewGridLayout>
+        <ng-template tkListItemTemplate let-item="item">
+            <GridLayout ios:style="padding:0; margin:0;" class="item" backgroundColor="White">
+                <GridLayout>
+                    <ios>
+                        <Image class="image" (tap)="onTap(item.navigation)" src="{{ item.imageSrc }}"
+                            stretch="aspectFill"></Image>
+                    </ios>
+                    <android>
+                        <Image (tap)="onTap(item.navigation)" src="{{ item.imageSrc }}" stretch="aspectFill"
+                            height="180"></Image>
+                    </android>
+                    <GridLayout verticalAlignment="bottom">
+                        <StackLayout paddingTop="8" paddingBottom="8" paddingLeft="16" paddingRight="16">
+                            <Label text="{{ item.section }}" class="section"></Label>
+                        </StackLayout>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+        </ng-template>
+    </RadListView>
+</GridLayout>

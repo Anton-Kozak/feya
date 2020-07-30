@@ -1,0 +1,25 @@
+.detailed-list {
+    background: linear-gradient(to bottom, #d586e9, #3e0acc);
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tip {
+    padding: 20;
+    border-color: rgb(102, 47, 255);
+    border-width: 1;
+    background-color: #e1d6ff;
+    border-radius: 15;
+    width: 90%;
+    margin-bottom: 10;
+    margin-top: 10;
+}
+
+.tip-label {
+    color: rgb(102, 47, 255);
+    font-family: "CormorantGaramond-Medium";
+    font-weight: bold;
+    font-size: 27;
+    text-align: center;
+}

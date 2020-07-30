@@ -1,0 +1,68 @@
+.outer-flex {
+    background-image: url("res://test");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    margin-left: 20;
+    margin-right: 20;
+    font-size: 20;
+    border-width: 1;
+    border-color: black;
+    border-radius: 20;
+    background-color: rgba(255, 255, 255, 0.726);
+}
+
+.image {
+    margin-top: 25;
+    margin-bottom: 10;
+}
+
+.social-media {
+    flex-direction: column;
+}
+
+.media {
+    margin-top: 10;
+    margin-bottom: 10;
+}
+
+.icon,
+.icon-text {
+    justify-content: center;
+    align-items: center;
+}
+
+.icon,
+.icon-text {
+    background-color: white;
+    android-elevation: 5;
+}
+
+.icon {
+    border-top-left-radius: 15;
+    border-bottom-left-radius: 15;
+    height: 50;
+    width: 50;
+}
+
+.icon-text {
+    border-top-right-radius: 15;
+    border-bottom-right-radius: 15;
+    padding: 10;
+    color: white;
+    font-weight: bold;
+    font-size: 25;
+}
+
+.icon-label {
+    font-family: "CormorantGaramond-Medium";
+}
+
+.icon {
+    font-size: 35;
+}

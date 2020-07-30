@@ -1,0 +1,40 @@
+.achievement-div {
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17;
+    height: 40%;
+    padding-left: 10;
+    padding-right: 10;
+}
+
+
+
+.unobtainedAchievement {
+    color: red;
+}
+
+.unobtainedAchievement Image {
+    opacity: .1;
+}
+
+.obtainedAchievement, .obtainedAchievement Image {
+    color: green;
+    opacity: 1;
+}
+
+.flex-achievement {
+    flex-direction: column;
+    background: linear-gradient(to bottom, rgb(181, 255, 243), rgb(247, 208, 255));
+    justify-content: space-around;
+}
+
+Image {
+    height: 150;
+    width: 150;
+}
+
+Label {
+    // width: 50%;
+    // text-wrap: true;
+    text-align: center;
+}
