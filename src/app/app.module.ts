@@ -10,7 +10,7 @@ import { AchievementsComponent } from './ach/achievements/achievements.component
 import { AchievementModalComponent } from './ach/achievement-modal/achievement-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { ContactsComponent } from './contacts/contacts.component';
-
+import { NgShadowModule } from "nativescript-ngx-shadow";
 @NgModule({
     bootstrap: [
         AppComponent
@@ -21,6 +21,7 @@ import { ContactsComponent } from './contacts/contacts.component';
         AppRoutingModule,
         TNSCheckBoxModule,
         SharedModule,
+        NgShadowModule
     ],
     declarations: [
         AppComponent,

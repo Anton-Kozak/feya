@@ -11,6 +11,18 @@
     text-align: center;
 }
 
+.achievementTitle {
+    font-weight: bold;
+}
+
+.details {
+    font-size: 21;
+    text-decoration: underline;
+    background-color: rgb(231, 218, 236);
+    border-width: .3;
+    border-color: indigo;
+}
+
 .swirl-in-fwd {
     animation-name: swirl-in-fwd;
     animation-duration: .7s;

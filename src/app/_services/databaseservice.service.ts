@@ -198,10 +198,15 @@ export class DatabaseService {
   seedAchievements() {
     this.getdbConnection().then(db => {
       if (!hasKey('achievements_state')) {
-        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши задания за 1 день!', 0)");
-        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши задания за 3 дня!', 0)");
-        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши задания за 7 дней!', 0)");
-        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 3 задания на высокой сложносте!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 1 задание!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 3 задания!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 7 заданий!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 30 заданий!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 3 дня на легкой сложности!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 3 дня на средней сложности!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 3 дня на тяжелой сложности!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши все задания!', 0)");
+        db.execSQL("insert into achievements (title, is_obtained) values ('Заверши 14 заданий!', 0)");
         setString('achievements_state', "filled");
         if (!hasKey('achievements')) {
           let achievement: AchievementRequirements =
@@ -258,8 +263,111 @@ export class DatabaseService {
         db.execSQL("insert into tips (tip, section) values ('Используйте внутреннюю поверхность дверей шкафа для подвесных органайзеров.', 'bedroom')");
         db.execSQL("insert into tips (tip, section) values ('Регулярно проветривайте спальню утром и вечером.', 'bedroom')");
         db.execSQL("insert into tips (tip, section) values ('Эфирное масло лаванды способствует успокоению и быстрому засыпанию (используйте в аромалампе или диффузоре).', 'bedroom')");
-        //kid
-
+        //ванная
+        db.execSQL("insert into tips (tip, section) values ('Унитаз рекомендуется обрабатывать моющими средствами каждые 2-3 дня не дожидаясь сильных отложений.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Ванну из акрила и стеклопластика ни в коем случае нельзя мыть жесткими металлическими губками.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Грязь у основания крана лучше всего вычищать старой зубной щеткой.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы убрать известковый налет с носиков кранов\душевой насадки рекомендуется надеть на них пластиковый пакет с раствором смягчителя воды\ специального средства на основе уксуса, фруктовых кислот и оставить откисать на ночь.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы раковина блестела используйте пищевую соду, а затем тщательно смойте.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Раз в месяц заливайте в унитаз средство Крот и оставляйте на несколько часов или на ночь.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Стены ванной, покрытые кафелем, нужно мыть водой с мылом раз в неделю. Чтобы кафель заблестел, протирают его водой с уксусом.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('После каждой стирки следует протирать резиновый уплотнитель в стиральной машинке и оставлять дверцу открытой до полного высыхания.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Нужно помнить, что белковые пятна (кровь, пот и др.) способны свертываться от горячей воды и их нужно замачивать только в холодной.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Линяющие вещи перед стиркой лучше замочить в холодной воде, в которую добавлена 1 столовая ложка уксуса.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Шерстяные вещи стирают и сушат, вывернув наизнанку, чтобы они не выцвели.', 'bathroom')");
+        db.execSQL("insert into tips (tip, section) values ('Унитаз рекомендуется обрабатывать моющими средствами каждые 2-3 дня не дожидаясь сильных отложений.', 'bathroom')");
+        //уход за посудой
+        db.execSQL("insert into tips (tip, section) values ('Любую посуду необходимо мыть сразу после использования. Посуду с пригоревшим дном можно залить на ночь водой или на 15 минут с добавлением соли и немного уксуса.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы избавиться от известковой накипи внутри чайника необходимо засыпать пакетик лимонной кислоты, довести до кипения и дать немного постоять.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Новую глиняную посуду перед употреблением рекомендуется положить на несколько часов в холодную воду, а затем прополоскать в горячей. Таким образом она укрепляется.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Наиболее распространенное средство для чистки алюминиевой посуды это нанести кашицу из пищевой соды и протереть губкой в холодной воде.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Медная посуда хорошо моется смесью 1 столовой ложки соли и 1 столовой ложки муки. Разбавьте смесь уксусом для получения тестообразной массы. Нанесите и дайте высохнуть. Затем смойте.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Медные изделия можно чистить лимонным соком или мелом.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Новую эмалированную посуду нужно ополоснуть, прокипятить в ней молоко, разведенное пополам с водой, и она долго не будет темнеть.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Эмаль при резком изменении температуры может потрескаться, поэтому нельзя лить в горячую посуду холодную воду и, наоборот, в холодную посуду кипяток.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Сковородки, покрытые тефлоном, нельзя перегревать и царапать. Моют такую посуду обычной водой и мягкой щеткой.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Хрусталь нужно мыть только холодной водой, от горячей воды он темнеет и тускнеет.', 'dishes')");
+        db.execSQL("insert into tips (tip, section) values ('Посуду с застывшим винным осадком моют так: заливают теплую мыльную воду с содой на 5-6 часов. Затем промывают с уксусом.', 'dishes')");
+        //хранение продуктов
+        db.execSQL("insert into tips (tip, section) values ('Продукты которые рекомендуется хранить в холодильнике: баклажаны, брокколи, виноград, вишня, зелень, морковь, сельдерей, фасоль, цукини, яблоки, ягоды.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Продукты которые рекомендуется хранить при комнатной температуре: абрикос, авокадо, ананас, банан, груша, дыня, картофель, киви, лук, персик, цитрусовые, чеснок.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Затхлый запах в холодильнике помогают убрать разложенные на ночь на полках кусочки черного хлеба.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Не храните в холодильнике не начатые консервы.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Яйца в холодильнике можно хранить не более двух недель.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Открытую бутылку подсолнечного масла можно хранить не больше месяца.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Периодически (3-4 раза в год) нужно производить ревизию своих запасов круп и муки на наличие насекомых.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Убедитесь, что вы не храните фрукты и овощи у газовой плиты. Природный газ ускоряет порчу этих продуктов.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Одна из самых важных для правильного хранения вещей — чистый холодильник. Его уборка может занять время, но она очень важна. Так еду не заражают опасные бактерии, и она остается свежей в течение долгого времени.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Свежие травы и зелень могут портиться очень быстро. Поставьте зелень в воду, как цветы! Вода продлевает жизнь растений. Именно из-за недостатка воды листья начинают увядать, терять цвет и упругость.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Хотите, чтобы картофель был свежим и не прорастал? Храните его с яблоками. (Убедитесь, что лук находится как можно дальше от картошки — с луком, в отличие от яблок, картофель быстро испортится.)', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('При хранении грибов убедитесь, что в них не затаилась влага. Можете хранить их в пакете из коричневой бумаги в холодильнике — так они будут в сухом прохладном месте. Не храните грибы в стекле или пластике, на которых будет оседать влага!', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Не многие знают, но сыр дышит, потеет и стареет. Никогда не держите сыр завернутым в полиэтилен или пищевую пленку. Лучшей упаковкой для хранения сыра дома является пергаментная бумага.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Большинство людей считают полочку на дверце холодильника самым удобным местом для хранения молока. На самом деле, дверца - худшее место для молочных продуктов. Температура там самая высокая, соответственно молоко может прокиснуть раньше времени. Лучше всего разместить молоко в основной части холодильника, на верхней или нижней полке.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы салат-латук и сельдерей не потеряли свою упругость и вкус в холодильнике, храните их плотно завернутыми в фольгу.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы виноград оставался твердым, упругим и сладким, храните его в полиэтиленовом пакете. И помните, чем плотнее упаковка пакета, тем дольше пролежат ягоды.', 'foodstorage')");
+        db.execSQL("insert into tips (tip, section) values ('Редис, морковку и сельдерей можно хранить очень долго, если предварительно их очистить, порезать и поместить в банки, наполненные небольшим количеством воды.', 'foodstorage')");
+        //выведение пятен
+        db.execSQL("insert into tips (tip, section) values ('Пятна от фруктового сока и фруктов хорошо выводятся при помощи простокваши или сыворотки с последующим прополаскиванием в большом количестве холодной воды.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Свежие жировые пятна рекомендуется сразу же посыпать солью и менять её до тех пор, пока пятно не исчезнет.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Свежие пятна от молока и крови необходимо смывать холодной водой, от горячей они свернутся.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Пятна от сырости на ткани можно удалить тряпкой, смоченной в сыворотке простокваши.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Еще пятно от вина можно удалить поместив испачканную вещь в горячее молоко или сыворотку на 30 минут и постирать с мылом.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Протрите пятно от вина раствором перекиси водорода (1 чайная ложка перекиси водорода на полстакана воды) и промойте холодной водой. Этот способ подходит только для белых изделий.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Насыпьте влажную соль на свежее пятно от вина и через 30 минут промойте горячей мыльной водой.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Пятна от губной помады убираются так: Если одежда белая, тогда пятно можно обработать перекисью водорода, а затем полоскать в мыльной воде, пока пятно не исчезнет. Если же одежда цветная, воспользуйтесь скипидаром или эфиром. Если это не поможет, тогда положите с обеих сторон ткани салфетку, насыпьте немного талька и прогладьте утюгом при средней температуре. В том случае, если ваша одежда из шерсти и/или шёлка, протрите загрязнённое место ватным тампоном, смоченным в спирте.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Жирные пятна можно удалить с помощью бензина, скипидара или ацетона. Смочите пятно от краёв к середине бензином. Затем накройте салфеткой и придавите тёплым утюгом.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Пятна с шерстяных ковров нужно удалять смесью уксуса и спирта (1 : 1). Пятна с ковров из искусственного волокна удаляйте холодной водой.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Хозяйственное мыло: это одно из самых универсальных средств борьбы с пятнами любого происхождения. Наносите на проблемную зону не само мыло, а мыльную пену. Оставьте на пару часов, после прополощите и снова постирайте.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Перекись водорода лучшее средство, чтобы вывести пятно с белой ткани.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Как вывести старое пятно? На помощь придет спирт, который является универсальным средством для борьбы со старыми пятнами. Используйте денатурат или нашатырный спирт. Намочите ватный тампон и приложите к пятну, оставив на 30-60 минут. В завершение проведите стирку.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы пятно не расползлось, начинайте удалении от краев и постепенно проходите в середину. Это правило касается загрязнений любого типа.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Старые пятна крови с мебели, матрасов, ковров убирают при помощи глицерина. Смешайте глицерин с теплой водой и при помощи ватного диска нанесите на ткань. Подождите несколько часов, а после очистите остатки.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы вывести пятна от пота. Используйте ацетилсалициловую кислоту. Необходимо развести 2-3 таблетки с чайной ложкой воды и полученную смесь нанести на проблемные места, оставив на 30 минут. Затем поместите вещь в теплый мыльный раствор на полчаса. Если после стирки разводы остаются, воспользуйтесь перекисью водорода в пропорции одна столовая ложка перекиси на 10 столовых ложек воды. Перекись оставьте на 10 минут и отправляйте вещи в стирку.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Для выведения следов пота и дезодоранта, подходит уксусный раствор в пропорции одна столовая ложка уксуса на 1 л воды. Замочите изделие в растворе на пару часов, а затем на проблемные участки дополнительно нанесите соду в пропорции 2 столовые ложки воды на 4 столовые ложки соды. Оставьте на час и постирайте в машинке.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Нашатырный спирт подойдёт для удаления кофе и чая. Возьмите ватный диск, нанесите спирт и приложите к загрязнению, следуя формуле от краев к центру, так удастся минимизировать расползание пятна. Подождите 20 минут, и постирайте обычным способом.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Удалить зеленые пятна от травы легко. Для этого понадобится 1 л воды и 1 столовая ложка нашатырного спирта. Опустите пятно в емкость с раствором и через 30 минут аккуратно потрите мочалкой или щеткой.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Как избавиться от чернильных пятен? Смочите ватный тампон в спирте и легкими движениями постукивайте по пятну. Еще отлично подойдет смесь (1:1) винного спирта и нашатырного спирта. Однако, чтобы полностью избавиться от пятна без застирывания, придется постараться.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('От старого жирного пятна можно избавиться, если пропитать его смесью из чистого спирта (1/2 стакана) и бензина ( 1/2 ч. л.), а затем дать ткани высохнуть.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы удалить пятно от помады и тонального крема положите ткань пятном на бумажное полотенце, затем с изнанки протрите смоченным в спирте ватным тампоном. Не забывайте часто менять бумагу.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы удалить пятно от ягод смочите ватный диск обычным столовым уксусом и промокните им пятно. Затем прополоскайте вещь в холодной воде.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Пятно от шоколада можно вывести если смочить его теплым 1,5%-м раствором нашатырного спирта. Или раствором уксуса и спирта (1:1).', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы удалить пятно от пота смешайте жидкость для мытья посуды (1 ст. л.) с перекисью водорода (3–4 ст. л.) и содой (2 ст. л.). Нанесите смесь на пятно, немного подождите и сполосните проточной водой.', 'stains')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы удалить грязь замочите пятно в смеси теплой воды, белого уксуса и средства для мытья посуды, затем подождите некоторое время и прополощите вещь в теплой воде.', 'stains')");
+        //эко жизнь
+        db.execSQL("insert into tips (tip, section) values ('Замените пластиковые пакеты на многоразовые мешочки и ходите в магазин с ними.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Замените пластиковые трубочки на многоразовые стальные, бамбуковые или акриловые.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Замените пластиковые зубные щётки на бамбуковые альтернативы.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Приобретите многоразовую кружку для кофе и покупайте кофе с собой в неё.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Одноразовые бритвенные станки можно заменить на многоразовую металлическую бритву.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Замените обычные лампочки в доме на энергосберегающие.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Используйте многоразовые аккумуляторы вместо обычных батареек.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Купите многоразовую бутылку для воды и не покупайте одноразовые.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Старайтесь покупать продукты без упаковки и в свою тару.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Ходите за продуктами с многоразовой сумкой-шоппером.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Пергамент для выпикания можно заменить на многоразовый силиконовый коврик.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Покупайте чай на развес вместо чая в пакетиках, они содержат пластик и не перерабатываются.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Подарите вещи вторую жизнь: покупайте вещи second hand и сдавайте свои ненужные вези в комиссионку.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Начните заниматься сортировкой мусора и сдавайте его в переработку.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Выключайте воду пока чистите зубы, бреетесь или мылитесь.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Принимайте душ вместо ванны чтобы сократить расход воды.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Обратите внимание на упаковку косметики, хорошо если её можно потом сдать в переработку.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Можно заменить пластиковую расчёску для волос на деревянную.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('А обычную мочалку можно заменить на джутовую.', 'ecolife')");
+        db.execSQL("insert into tips (tip, section) values ('Одноразовые спонжи для снятия макияжа можно легко заменить на многоразовые. Они хорошо стираются в машинке.', 'ecolife')");
+        //разное
+        db.execSQL("insert into tips (tip, section) values ('Выполняйте регулярно три вида уборки: ежедневную, еженедельную (влажную) и сезонную (генеральную).', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Во время генеральной уборки 3-4 раза в день рекомендуется проводить ревизию всех вещей. Обнаружить что нуждается в чистке и ремонте.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('В семьях, где есть грудные дети, влажную уборку нужно делать каждый день.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Полы на кухне рекомендуется протирать ежедневно или раз в два дня.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Во время сезонной уборки нужно доставать все вещи из шкафов, проветрить их и просушить на солнце и только затем сложить обратно в предварительно вымытый шкаф.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Чтобы облегчить мытье внутренней поверхности микроволновой печи необходимо поставить в нее миску с водой и долькой лимона и хорошо вскипятить. Тогда загрязнения будут убираться легче.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Если протирать поверхность печки влажной тряпкой после каждого приготовления пищи, то вы значительно облегчите себе жизнь во время еженедельной уборки.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Мебель с кожаной обивкой вытирать нужно сухой тряпкой, так как от влаги кожа портится.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('После каждого использования пылесоса рекомендуется очищать фильтр от пыли.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Блеск колец с бриллиантами и другими драгоценными камнями хорошо восстанавливается после чистки зубной пастой, которую потом можно смыть холодной водой.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Если потускнело и потемнело серебряное кольцо, его опускают на два часа в чашку с уксусом (1/2 чашки) и пищевой содой (2 столовые ложки). Затем кольцо протирают полотенцем.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Никогда не следует гладить вещи если на них есть пятна. Это их запаивает и выведение будет почти невозможным.', 'other')");
+        db.execSQL("insert into tips (tip, section) values ('Стопки свежевыглаженных вещей сразу помещать в шкаф нельзя. Они должны полностью остыть 2 часа при комнатной температуре.', 'other')");
         setString('tips_state', 'filled');
       };
     });
@@ -321,7 +429,7 @@ export class DatabaseService {
       })
   }
 
-  completeAllTasks(){
+  completeAllTasks() {
     this.getdbConnection()
       .then(db => {
         db.all("update daily_tasks set is_complete = 1");
@@ -348,7 +456,6 @@ export class DatabaseService {
         .then(db => {
           db.all("update daily_tasks set is_complete = 1 where id = ?", [value.id]);
           setString('daily_tasks_status', 'completed_' + this.currentDate);
-          //удалять старые таски
         });
     })
     let achievementFile: AchievementRequirements = JSON.parse(getString(('achievements')))
@@ -396,6 +503,42 @@ export class DatabaseService {
       this.getdbConnection().then(db => {
         db.execSQL("update achievements set is_obtained = 1 where id = 3");
         this.achievementObtained.next({ title: 'Заверши задание за 7 дней', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.completedDaysCount === 14) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 9");
+        this.achievementObtained.next({ title: 'Заверши задания за 14 дней!', details: 'За ваше усердие Вы получаете подарок - бесплатный PDF-гайд "Переезд без забот". Свяжитесь со мной для деталей.', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.completedDaysCount === 30) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 4");
+        this.achievementObtained.next({ title: 'Заверши задание за 30 дней', details: 'За ваше усердие Вы получаете подарок - бесплатную онлайн-консультация по разбору проблемной зоны. Свяжитесь со мной для деталей.', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.easyDifficultyDaysCount === 3) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 5");
+        this.achievementObtained.next({ title: 'Заверши 3 легких задания!', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.mediumDifficultyDaysCount === 3) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 6");
+        this.achievementObtained.next({ title: 'Заверши 3 средних задания!', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.hardDifficultyDaysCount === 3) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 7");
+        this.achievementObtained.next({ title: 'Заверши 3 тяжелых задания!', is_obtained: 1 });
+      });
+    }
+    else if (achievementFile.completedDaysCount === 100) {
+      this.getdbConnection().then(db => {
+        db.execSQL("update achievements set is_obtained = 1 where id = 8");
+        this.achievementObtained.next({ title: 'Заверши все задания!', details: 'За ваше усердие Вы получаете подарок - бесплатную онлайн организацию пространства! Свяжитесь со мной для деталей.', is_obtained: 1 });
       });
     }
     this.getAchievements();

@@ -1,5 +1,66 @@
 <ns-action-bar actionBarTitle="Ваши Достижения"></ns-action-bar>
-<FlexboxLayout *ngIf="achievementsLoaded" class="flex-achievement">
+<ScrollView>
+    <StackLayout *ngIf="achievementsLoaded" class="flex-achievement">
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[0].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[0].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[1].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[1].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[2].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[2].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[8].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[8].title + ' Получи бонус!'"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[3].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[3].title + ' Получи бонус!'"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[4].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[4].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[5].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[5].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[6].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[6].title"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="achievement-div">
+            <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[7].is_obtained === 1}">
+                <Image src="res://trophyfinal" stretch="aspectFill"></Image>
+                <Label textWrap="true" [text]="achievements[7].title + ' Получи бонус!'"></Label>
+            </StackLayout>
+        </FlexboxLayout>
+    </StackLayout>
+</ScrollView>
+<!-- <FlexboxLayout *ngIf="achievementsLoaded" class="flex-achievement">
+    <StackLayout>
+        
+    </StackLayout>
     <FlexboxLayout class="achievement-div">
         <StackLayout class="achievement unobtainedAchievement" [ngClass]="{obtainedAchievement: achievements[0].is_obtained === 1}">
             <Image src="res://trophy" stretch="aspectFill"></Image>
@@ -20,4 +81,4 @@
             <Label textWrap="true" [text]="achievements[3].title"></Label>
         </StackLayout>
     </FlexboxLayout>
-</FlexboxLayout>
+</FlexboxLayout> -->

@@ -30,6 +30,18 @@
     z-index: 0;
 }
 
+.my-btn {
+    background-color: #212240;
+    color: rgb(255, 255, 255);
+    border-radius: 15;
+    border-width: .3;
+    border-color: rgb(255, 255, 255);
+    font-size: 19;
+    font-weight: bold;
+    animation-duration: 1s;
+    animation-name: bounce;
+}
+
 .bounce {
     animation-duration: 1s;
     animation-name: bounce;

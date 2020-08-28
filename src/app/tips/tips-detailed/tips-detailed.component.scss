@@ -1,15 +1,17 @@
 .detailed-list {
-    background: linear-gradient(to bottom, #d586e9, #3e0acc);
+    background: linear-gradient(to bottom, #e2c5e9, #a194c7);
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .tip {
+    android-elevation: 10;
+    android-dynamic-elevation-offset: 3;
     padding: 20;
     border-color: rgb(102, 47, 255);
-    border-width: 1;
-    background-color: #e1d6ff;
+    border-width: .3;
+    background-color: #f6f2ff;
     border-radius: 15;
     width: 90%;
     margin-bottom: 10;
@@ -17,7 +19,7 @@
 }
 
 .tip-label {
-    color: rgb(102, 47, 255);
+    color: rgb(20, 9, 51);
     font-family: "CormorantGaramond-Medium";
     font-weight: bold;
     font-size: 27;

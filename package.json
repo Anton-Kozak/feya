@@ -29,6 +29,7 @@
     "@nstudio/nativescript-checkbox": "^1.0.0",
     "@types/node": "^14.0.26",
     "nativescript-exit": "^1.0.1",
+    "nativescript-ngx-shadow": "^6.5.0",
     "nativescript-sqlite": "^2.6.3",
     "nativescript-ui-listview": "^8.2.0",
     "reflect-metadata": "~0.1.12",

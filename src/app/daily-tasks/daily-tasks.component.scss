@@ -13,6 +13,7 @@
 .message-wrapper {
     background-color: rgba(221, 180, 255, 0.795);
 }
+
 .message {
     color: black;
 }
@@ -29,8 +30,9 @@
     background-color: #fdefff;
     border-width: 1;
     border-color: #62006d;
-    font-size: 17;
+    font-size: 20;
     text-align: center;
+    font-weight: bold;
     color: rgb(0, 0, 0);
     margin-left: 10;
     margin-right: 10;
@@ -44,6 +46,7 @@
     height: 30;
     border-width: 1;
 }
+
 .inactive {
     animation-name: button-active-transition;
     animation-duration: 0.3s;

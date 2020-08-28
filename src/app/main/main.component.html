@@ -1,5 +1,5 @@
 <ns-action-bar actionBarTitle="Главная страница" canGoBack='false'></ns-action-bar>
-<GridLayout rows="100, *, 70" columns="*" class="outer-flex animation">
+<GridLayout rows="100, *, 120" columns="*" class="outer-flex animation">
     <FlexboxLayout row="0" col="0">
     </FlexboxLayout>
     <FlexboxLayout row="1" col="0" class="inner-flex" style="background-color: transparent;">
@@ -16,8 +16,9 @@
     </FlexboxLayout>
     <FlexboxLayout row="2" col="0" class="inner-flex" style="background-color: transparent;">
         <!-- <Button text='Показать всё задания' (tap)="showAllTasks()"></Button> -->
-        <Button text='Контакты' nsRouterLink="/contacts"></Button>
-        <!-- <Button text='Сбросить всё задания' (tap)="resetTasks()"></Button>
+        <Button class="my-btn" text='Контакты' nsRouterLink="/contacts"></Button>
+        <!-- <Button text='Сбросить всё задания' (tap)="resetTasks()"></Button> -->
+        <!--
         <Button text='Завершить всё задания' (tap)="completeAllTasks()"></Button>
         <Button text='Завершить всё задания2!!!!' (tap)="completeAllTasks()"></Button> -->
     </FlexboxLayout>

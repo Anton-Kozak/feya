@@ -12,13 +12,16 @@ import { Router } from '@angular/router';
 })
 export class GreetingModalComponent implements OnInit {
 
-  greetingText: string = '';
+  motivationImage: string = null;
 
-//private modalParams: ModalDialogParams
+  //private modalParams: ModalDialogParams
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.greetingText = this.data.greetingTips[Math.floor(Math.random() * this.data.greetingTips.length)];
+    this.motivationImage = Math.floor(Math.random() * (41 - 1 + 1) + 1).toString();
+    console.log(this.motivationImage);
+    if (this.motivationImage <= '0' || this.motivationImage > '41')
+      this.motivationImage = '1';
   }
 
   close() {

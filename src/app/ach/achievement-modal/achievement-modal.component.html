@@ -1,12 +1,13 @@
 <FlexboxLayout justifyContent="center" alignItems="center" class="modal-body">
     <StackLayout class="text-div">
-        <Image class="swirl-in-fwd" height="250" width="250" src="res://trop"></Image>
+        <Image class="swirl-in-fwd" height="250" width="250" src="res://trophyfinal"></Image>
         <Label fontSize="25" textWrap="true">
             <FormattedString>
-                <Span text="Поздравляем! Вы получили достижение "></Span>
-                <Span text="{{achievementTitle.title}}" fontFamily="Roboto" fontAttributes="Bold"></Span>
+                <Span text="Поздравляем! Вы получили достижение: "></Span>
+                <Span text="{{achievementTitle.title}}" class="achievementTitle"></Span>
             </FormattedString>
         </Label>
+        <Label textWrap="true" class="details" *ngIf="achievementTitle.details" text="{{achievementTitle.details}}"></Label>
         <Button (tap)="close()" fontSize="25" class="btn btn-primary" text="Хорошо"></Button>
     </StackLayout>
 </FlexboxLayout>

@@ -10,34 +10,10 @@ var Sqlite = require("nativescript-sqlite");
 export class DataService {
 
   tips = new Subject<string[]>();
-
-  greetingTips: string[] = [
-    "Первое привествтвие!!!",
-    "Второе привествтвие!!!",
-    "Третье привествтвие!!!",
-    "Четвертое привествтвие!!!",
-    "Пятое привествтвие!!!",
-    "Шестое привествтвие!!!",
-  ];
-
   private _rootVCRef: ViewContainerRef;
 
   constructor() { }
-  // getData(section: string) {
-  //   switch (section) {
-  //     case 'bathroom':
-  //       console.log("I tried to reutnr bathroom");
-  //       return bathroom.slice();
-  //     case 'hall':
-  //       return hall;
-  //     case 'kid':
-  //       return kid;
-  //     case 'main':
-  //       return main;
-  //     default:
-  //       return null;
-  //   }
-  // }
+
 
   public getdbConnection() {
     return new Sqlite('tasks');

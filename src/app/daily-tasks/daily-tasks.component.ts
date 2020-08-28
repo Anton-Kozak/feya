@@ -67,8 +67,8 @@ export class DailyTasksComponent implements OnInit {
     console.log(this.dailyTasks);
     this.radioOptions = [
       new RadioOption("Легко - 1 задание", "green", 0),
-      new RadioOption("Нормально - 2 задания", "yellow", 1),
-      new RadioOption("Сложно - 3 задания!", "red", 2)
+      new RadioOption("Средне - 2 задания", "yellow", 1),
+      new RadioOption("Тяжело - 3 задания!", "red", 2)
     ];
     this.database.achievementObtained.subscribe(ach => {
       if (ach !== null) {
@@ -159,10 +159,5 @@ export class DailyTasksComponent implements OnInit {
         backButton.setColorFilter(android.graphics.Color.parseColor('#171717'), (<any>android.graphics).PorterDuff.Mode.SRC_ATOP);
       }
     }
-  }
-
-
-  test() {
-    console.log('test')
   }
 }

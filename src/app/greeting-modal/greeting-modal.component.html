@@ -1,6 +1,6 @@
-<FlexboxLayout justifyContent="center" alignItems="center" class="modal-body animation">
+<FlexboxLayout *ngIf="motivationImage !== null" justifyContent="center" alignItems="center" class="modal-body animation">
     <StackLayout class="text-div">
-        <Image class="img" src="https://sun9-3.userapi.com/dB8CoIqC7JAjp1-KZZyyWDA0ldgcStuT7-3PUQ/UZCOzuTmiH0.jpg"></Image>
+        <Image class="img" src="{{'res://mot' + motivationImage}}"></Image>
         <Button (tap)="close()" text="Хорошо, спасибо!"></Button>
     </StackLayout>
 </FlexboxLayout>

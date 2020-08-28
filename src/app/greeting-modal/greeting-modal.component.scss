@@ -1,8 +1,10 @@
 .modal-body {
-    background-color: #8c7ed2
+    // background-color: #8c7ed2
+    background-image: url('res://test');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
-
-
 
 .text-div {
     background-color: transparent;
@@ -17,11 +19,11 @@
     animation-fill-mode: forwards;
 }
 
-.img{
+.img {
     width: 100%;
 }
 
-.text-div Label{
+.text-div Label {
     opacity: 0;
     font-size: 20;
     text-align: center;
@@ -34,7 +36,7 @@
     animation-fill-mode: forwards;
 }
 
-.text-div Button{
+.text-div Button {
     // font-family: fantasy;
     font-size: 20;
     font-weight: bold;
@@ -47,8 +49,6 @@
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
-
-
 
 @keyframes appear {
     from {

@@ -1,33 +1,27 @@
 <ns-action-bar actionBarTitle="Задания на день" canGoBack='true'></ns-action-bar>
-<FlexboxLayout class="outer-flex">
-    <StackLayout *ngIf="!isDifficultySelected" class="difficulty-div">
-        <StackLayout class="p-10" *ngFor="let option of radioOptions">
-            <StackLayout orientation="horizontal" verticalAlignment="center">
-                <CheckBox #elem [checked]="option.selected"
-                    (checkedChange)="elem.checked !== option.selected && changeCheckedRadio(option)" class="checkbox"
-                    boxType="circle" fillColor="#43026e"></CheckBox>
-                <StackLayout verticalAlignment="center">
-                    <Label class="checkbox-label" [text]="option.text" [ngClass]="{'selected': option.selected}"
-                        textWrap="true" (tap)="changeCheckedRadio(option)"></Label>
+<ScrollView>
+    <FlexboxLayout class="outer-flex">
+        <StackLayout *ngIf="!isDifficultySelected" class="difficulty-div">
+            <StackLayout class="p-10" *ngFor="let option of radioOptions">
+                <StackLayout orientation="horizontal" verticalAlignment="center">
+                    <CheckBox #elem [checked]="option.selected" (checkedChange)="elem.checked !== option.selected && changeCheckedRadio(option)" class="checkbox" boxType="circle" fillColor="#43026e"></CheckBox>
+                    <StackLayout verticalAlignment="center">
+                        <Label class="checkbox-label" [text]="option.text" [ngClass]="{'selected': option.selected}" textWrap="true" (tap)="changeCheckedRadio(option)"></Label>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
+            <Button *ngIf="!isDifficultySelected" class="diff-button" text="Выберите сложность" [isEnabled]="selectedDifficulty !== null" (tap)="confirmDifficultySelection()"></Button>
         </StackLayout>
-        <Button *ngIf="!isDifficultySelected" class="diff-button" text="Выберите сложность"
-            [isEnabled]="selectedDifficulty !== null" (tap)="confirmDifficultySelection()"></Button>
-    </StackLayout>
-    <StackLayout *ngIf="dailyTasks !== null && isDifficultySelected">
-        <FlexboxLayout *ngFor="let task of dailyTasks; let i = index" class="button-row">
-            <Label *ngIf="getTaskChangeStatus() === 'false'" (tap)="onTaskChange(i, dailyTasks[i].id)" text="&#xf01e;"
-                class="fa"></Label>
-            <Label [ngClass]="{'active': dailyTasks[i].is_complete === '1'}" class="checkbox-button inactive"
-                (tap)="onPress(i)"></Label>
-            <Label width="250" textWrap="true" class="item" [text]="task.message"></Label>
-        </FlexboxLayout>
-    </StackLayout>
-    <Button *ngIf="dailyTasks !== null && isDifficultySelected" [ngClass]="{'can-see': !canEnableSubmitButton()}"
-        [isEnabled]="canEnableSubmitButton()" text="Завершить" (tap)="endDay()" class="submit-button"></Button>
-    <StackLayout class="message-wrapper" *ngIf="dailyTasks === null && isDifficultySelected">
-        <Label textWrap="true" class="h2 text-center message"
-            text="Вы завершили все задания на сегодня, поздравляем! Приходите завтра!"></Label>
-    </StackLayout>
-</FlexboxLayout>
+        <StackLayout *ngIf="dailyTasks !== null && isDifficultySelected">
+            <FlexboxLayout *ngFor="let task of dailyTasks; let i = index" class="button-row">
+                <Label *ngIf="getTaskChangeStatus() === 'false'" (tap)="onTaskChange(i, dailyTasks[i].id)" text="&#xf01e;" class="fa"></Label>
+                <Label [ngClass]="{'active': dailyTasks[i].is_complete === '1'}" class="checkbox-button inactive" (tap)="onPress(i)"></Label>
+                <Label width="250" textWrap="true" class="item" [text]="task.message"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <Button *ngIf="dailyTasks !== null && isDifficultySelected" [ngClass]="{'can-see': !canEnableSubmitButton()}" [isEnabled]="canEnableSubmitButton()" text="Завершить" (tap)="endDay()" class="submit-button"></Button>
+        <StackLayout class="message-wrapper" *ngIf="dailyTasks === null && isDifficultySelected">
+            <Label textWrap="true" class="h2 text-center message" text="Вы завершили все задания на сегодня, поздравляем! Приходите завтра!"></Label>
+        </StackLayout>
+    </FlexboxLayout>
+</ScrollView>

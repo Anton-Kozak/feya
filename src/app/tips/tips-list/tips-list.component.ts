@@ -11,16 +11,12 @@ export class TipsListComponent implements OnInit {
   locations: { section: string, navigation: string, imageSrc: string }[] = [
     { section: "Кухня", navigation: 'kitchen', imageSrc: "res://kitchen" },
     { section: "Спальная комната", navigation: 'bedroom', imageSrc: "res://bedroom" },
-    { section: "Главная комната", navigation: 'main', imageSrc: "https://placem.at/places?random=3&w=500&txt=0" },
-    { section: "Детская", navigation: 'kid', imageSrc: "https://placem.at/places?random=4&w=500&txt=0" },
-    { section: "Aberystwyth", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=5&w=500&txt=0" },
-    // { section: "Macclesfield", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=6&w=500&txt=0" },
-    // { section: "Larnwick", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=77&w=500&txt=0" },
-    // { section: "Snowbush", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=8&w=500&txt=0" },
-    // { section: "Kelna", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=55&w=500&txt=0" },
-    // { section: "Drumnacanvy", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=44&w=500&txt=0" },
-    // { section: "Hartlepool", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=11&w=500&txt=0" },
-    // { section: "Timeston", navigation: 'bathroom', imageSrc: "https://placem.at/places?random=33&w=500&txt=0" }
+    { section: "Ванная комната", navigation: 'bathroom', imageSrc: "res://bathroom" },
+    { section: "Уход за посудой", navigation: 'dishes', imageSrc: "res://dishes" },
+    { section: "Хранение продуктов", navigation: 'foodstorage', imageSrc: "res://foodstorage" },
+    { section: "Выведение пятен", navigation: 'stains', imageSrc: "res://stains" },
+    { section: "Экологическая жизнь", navigation: 'ecolife', imageSrc: "res://ecolife" },
+
   ];
 
 
