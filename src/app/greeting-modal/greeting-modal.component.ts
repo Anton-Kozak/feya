@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { ModalDialogParams } from '@nativescript/angular/modal-dialog';
-import { DataService } from '../_services/data.service';
 import { Router } from '@angular/router';
-
-
+import { Page, isAndroid } from "tns-core-modules/ui/page";
+import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
+import { exit } from 'nativescript-exit';
+import * as application from "tns-core-modules/application";
 @Component({
   selector: 'ns-greeting-modal',
   templateUrl: './greeting-modal.component.html',
@@ -14,10 +14,19 @@ export class GreetingModalComponent implements OnInit {
 
   motivationImage: string = null;
 
-  //private modalParams: ModalDialogParams
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private router: Router, private page: Page) { }
 
   ngOnInit(): void {
+    if (!isAndroid) {
+      return;
+    }
+    application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+      if (this.router.isActive("", true)) {
+        data.cancel = true;
+        exit();
+      }
+    });
+    this.page.actionBarHidden = true;
     this.motivationImage = Math.floor(Math.random() * (41 - 1 + 1) + 1).toString();
     console.log(this.motivationImage);
     if (this.motivationImage <= '0' || this.motivationImage > '41')
