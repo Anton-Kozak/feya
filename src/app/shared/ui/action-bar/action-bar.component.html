@@ -1,3 +1,6 @@
-<ActionBar backgroundColor="#a685ff" [title]="actionBarTitle">
-    <NavigationButton *ngIf="canGoBack === 'true'" text="Назад" android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+<ActionBar backgroundColor="#a685ff">
+    <FlexboxLayout class="action-flex">
+        <NavigationButton *ngIf="canGoBack === 'true'" text="Назад" android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+        <Label class="action-bar" [text]="actionBarTitle"></Label>
+    </FlexboxLayout>
 </ActionBar>

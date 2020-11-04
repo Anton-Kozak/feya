@@ -11,6 +11,7 @@ import { AchievementModalComponent } from './ach/achievement-modal/achievement-m
 import { SharedModule } from './shared/shared.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { NgShadowModule } from "nativescript-ngx-shadow";
+import { PersonalTaskComponent } from './personal_tasks/personal-task/personal-task.component';
 @NgModule({
     bootstrap: [
         AppComponent
@@ -31,6 +32,7 @@ import { NgShadowModule } from "nativescript-ngx-shadow";
         AchievementsComponent,
         AchievementModalComponent,
         ContactsComponent,
+        PersonalTaskComponent,
     ],
     providers: [],
     schemas: [

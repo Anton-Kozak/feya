@@ -1,0 +1,33 @@
+<ns-action-bar actionBarTitle="Ваш список заданий на день"></ns-action-bar>
+<ScrollView>
+    <StackLayout class="outer">
+        <StackLayout *ngIf="!hasDailyTask && isToday">
+            <Button class="create-list" text="Создать список на день" (tap)="onAdd()"></Button>
+        </StackLayout>
+        <StackLayout>
+            <FlexboxLayout justifyContent="space-between" alignItems="center">
+                <StackLayout verticalAlignment="center">
+                    <Label class="but" text="<" (tap)="onPrev()"></Label>
+                </StackLayout>
+                <StackLayout class="date">
+                    <Label class="dateString" text={{dateString}}></Label>
+                </StackLayout>
+                <StackLayout verticalAlignment="center">
+                    <Label class="but" text=">" (tap)="onNext()"></Label>
+                </StackLayout>
+            </FlexboxLayout>
+            <!-- <Button text="Проверить" (tap)="onGet()"></Button> -->
+            <FlexboxLayout class="myflex" justifyContent="center" alignItems="center" flexDirection="column" #stack>
+            </FlexboxLayout>
+        </StackLayout>
+        <!-- это когда к существубщей задаче добавляются новые пункты -->
+        <Button class="buttons" *ngIf="!hasExistedTasks && hasDailyTask" text="Создать задание" (tap)="addNewField()"></Button>
+        <Button class="buttons" *ngIf="showAddToCurrentTasks && hasDailyTask" text="Добавить задание" (tap)="addNewFieldToExistingTask()"></Button>
+        <Button class="buttons" #saveChangesButton visibility="collapse" text="Сохранить изменения" (tap)="onEdit()"></Button>
+        <Button class="buttons" *ngIf="showAddNewCurrentTasks" text="Добавить новые задания" (tap)="onAddNewCurrentTasks()"></Button>
+        <!-- <Button text="Delete" (tap)="onDelete()"></Button> -->
+        <!-- добавить все пункты в текущий пустой день -->
+        <Button class="buttons" *ngIf="textfields > 0 && showAdd && !hasExistedTasks" text="Создать список задания на день" (tap)="onAddTask()"></Button>
+        <!-- <Button *ngIf="isToday" text="Is Today"></Button> -->
+    </StackLayout>
+</ScrollView>

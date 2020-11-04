@@ -6,6 +6,7 @@ import { DailyTasksComponent } from "./daily-tasks/daily-tasks.component";
 import { AchievementsComponent } from "./ach/achievements/achievements.component";
 import { GreetingModalComponent } from "./greeting-modal/greeting-modal.component";
 import { ContactsComponent } from "./contacts/contacts.component";
+import { PersonalTaskComponent } from "./personal_tasks/personal-task/personal-task.component";
 const routes: Routes = [
 
     { path: "", component: GreetingModalComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     },
     { path: "dailyTasks", component: DailyTasksComponent },
     { path: "achievements", component: AchievementsComponent },
+    { path: "personalTasks", component: PersonalTaskComponent },
     { path: "contacts", component: ContactsComponent },
     // { path: "", redirectTo: "/main", pathMatch: "full" },
 ];

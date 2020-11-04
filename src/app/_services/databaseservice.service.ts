@@ -9,7 +9,8 @@ import {
 } from 'tns-core-modules/application-settings';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Achievement } from '../_models/achievement';
-
+import { TasksAndDate } from '../_models/tasks_and_date';
+import { PersonalTask } from '../_models/personal_task';
 
 
 var Sqlite = require("nativescript-sqlite");
@@ -20,6 +21,13 @@ var Sqlite = require("nativescript-sqlite");
 export class DatabaseService {
 
   currentTask = new BehaviorSubject<Task[]>([]);
+  isTaskDayCreatedSubject = new Subject<boolean>();
+  isTasksForDayExistSubject = new Subject<boolean>();
+  personalTasks = new Subject<string[]>();
+  currentIDForPersonalTasks: number = null;
+
+  tasksAndDate: TasksAndDate
+
   achievementObservable = new Subject<Achievement[]>();
   achievementObtained = new Subject<Achievement>();
   constructor() { }
@@ -75,6 +83,14 @@ export class DatabaseService {
           }, error => {
             console.log("CREATE tips TABLE ERROR", error);
           });
+        db.execSQL("create table if not exists personal_tasks_table (id INTEGER NOT NULL UNIQUE, date TEXT NOT NULL, PRIMARY KEY(id AUTOINCREMENT))")
+        error => {
+          console.log("CREATE personal Tasks TABLE ERROR", error);
+        };
+        db.execSQL("create table if not exists personal_tasks (id INTEGER NOT NULL UNIQUE, task_id INTEGER NOT NULL, task TEXT NOT NULL, is_complete INTEGER NOT NULL, PRIMARY KEY(id AUTOINCREMENT))")
+        error => {
+          console.log("CREATE personal Tasks TABLE ERROR", error);
+        };
       }
       else {
         console.log('Error creating table');
@@ -370,6 +386,133 @@ export class DatabaseService {
         db.execSQL("insert into tips (tip, section) values ('Стопки свежевыглаженных вещей сразу помещать в шкаф нельзя. Они должны полностью остыть 2 часа при комнатной температуре.', 'other')");
         setString('tips_state', 'filled');
       };
+    });
+  }
+
+
+  isTaskDayCreated() {
+    return new Promise(resolve => {
+      let date = new Date();
+      let dateString = date.getUTCFullYear() + '-' + (date.getUTCMonth() + 1) + '-' + (date.getUTCDate());
+      this.getdbConnection().then(db => {
+        db.all(`select * from personal_tasks_table where date = '${dateString}'`).then(res => {
+          if (res.length > 0) {
+            resolve(true);
+          }
+          else
+            resolve(false);
+        });
+      });
+    })
+  }
+
+  hasTasksForCurrentDay() {
+    return new Promise(resolve => {
+      this.getdbConnection().then(db => {
+        db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
+          db.all(`select * from personal_tasks where task_id = ${res[0][0]}`).then(t => {
+            if (t.length > 0) {
+              console.log('set current id to ', res[0][0]);
+              this.currentIDForPersonalTasks = res[0][0];
+              resolve(t);
+            }
+            else
+              resolve(null);
+          })
+        });
+      });
+    });
+  }
+
+
+  addPersonalTaskDay(date: string) {
+    this.getdbConnection().then(db => {
+      console.log(date);
+      //проверка сегоднешней даты
+      //он 1 раз за день может быть использован!
+      db.execSQL(`insert into personal_tasks_table (date) values ('${date}')`);
+
+    });
+  }
+
+  addPersonalTaskForCurrentDay(task: string) {
+    this.getdbConnection().then(db => {
+      db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
+        console.log(`I add: ${res[0][0]}', '${task}`);
+        db.execSQL(`insert into personal_tasks (task_id, task, is_complete) values ('${res[0][0]}', '${task}', 0)`);
+      })
+    });
+  }
+
+  deleteDailyTasks() {
+    this.getdbConnection().then(db => {
+      db.all('delete from personal_tasks_table');
+      db.all('delete from personal_tasks');
+    });
+  }
+
+
+  getCurrentIDForPersonalTasks(offset: number) {
+    return new Promise(async resolve => {
+      if (this.currentIDForPersonalTasks === null) {
+        this.currentIDForPersonalTasks = <number>await this.getLastId();
+        console.log(this.currentIDForPersonalTasks);
+      }
+      this.getdbConnection().then(db => {
+        let id = this.currentIDForPersonalTasks + offset
+        db.all(`select * from personal_tasks where task_id = ${id}`).then(t => {
+          if (t.length > 0) {
+            db.all(`select date from personal_tasks_table where id = ${id}`).then(date => {
+              this.tasksAndDate = { date: date[0][0], tasks: t };
+              return resolve(this.tasksAndDate);
+            });
+          }
+          else {
+            resolve(null);
+          }
+        })
+      });
+    });
+  }
+
+
+  getLastId() {
+    return new Promise(resolve => {
+      this.getdbConnection().then(db => {
+        //console.log('get to db');
+        db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
+          db.all(`select * from personal_tasks where task_id = ${res[0][0]}`).then(t => {
+            //console.log('res:', res, 't ', t);
+            if (t.length > 0) {
+              //console.log('set current id to ', res[0][0]);
+              resolve(res[0][0]);
+            }
+          })
+        });
+      });
+    })
+  }
+
+
+  editCurrentTasks(tasksForEdit: PersonalTask[]) {
+    return new Promise(resolve => {
+      this.getdbConnection().then(db => {
+        if (tasksForEdit.length > 0) {
+          for (const task of tasksForEdit) {
+            db.all(`update personal_tasks set task = '${task.task}' where id = '${task.id}'`);
+          }
+          resolve('Success');
+        }
+        else
+          resolve('Failed to edit');
+      });
+    })
+  }
+
+  changeCompleteOnTask(status: number, id: string) {
+    this.getdbConnection().then(db => {
+      db.all(`update personal_tasks set is_complete = ${status} where id = '${id}'`).then(() => {
+      });
     });
   }
 

@@ -1,0 +1,80 @@
+    .outer {
+        background-image: url("res://test");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    
+    .but {
+        border-radius: 15;
+        font-size: 50;
+        width: 50;
+        background-color: #fdefff;
+        border-width: 1;
+        border-color: #62006d;
+        text-align: center;
+        margin: 10;
+    }
+    
+    .buttons {
+        width: 50%;
+        border-radius: 15;
+        font-size: 23;
+        background-color: #fdefff;
+        border-width: 1;
+        border-color: #62006d;
+        text-align: center;
+        margin: 10;
+    }
+    
+    .create-list {
+        width: auto;
+        border-radius: 15;
+        font-size: 23;
+        background-color: #fdefff;
+        border-width: 1;
+        border-color: #62006d;
+        text-align: center;
+        margin: 10;
+    }
+    
+    .date {
+        height: 50%;
+    }
+    
+    .dateString {
+        font-size: 25;
+        background-color: #fdefff;
+        border-width: 1;
+        border-color: #62006d;
+        border-radius: 15;
+        padding: 15;
+    }
+    
+    .checkbox-button {
+        border-radius: 100;
+        width: 30;
+        height: 30;
+        border-width: 1;
+    }
+    
+    .inactive {
+        background-color: rgb(255, 130, 130);
+        border-color: rgb(255, 0, 0);
+    }
+    
+    .active {
+        background-color: rgb(43, 148, 104);
+        border-color: rgb(0, 114, 0);
+    }
+    
+    .myflex {
+        background-color: #fdefff;
+        border-width: 1;
+        border-color: #62006d;
+        border-radius: 15;
+        margin-left: 10;
+        margin-right: 10;
+        font-family: "CormorantGaramond-Medium";
+        padding-bottom: 20;
+    }
