@@ -1,6 +1,8 @@
 <FlexboxLayout *ngIf="motivationImage !== null" justifyContent="center" alignItems="center" class="modal-body animation">
+    <!-- <FlexboxLayout *ngIf="selectedGreening !== null" justifyContent="center" alignItems="center" class="modal-body animation"> -->
     <StackLayout class="text-div">
         <Image class="img" src="{{'res://mot' + motivationImage}}"></Image>
+        <!-- <Label textWrap="true" [text]="selectedGreening"></Label> -->
         <Button (tap)="close()" text="Cпасибо!"></Button>
     </StackLayout>
 </FlexboxLayout>

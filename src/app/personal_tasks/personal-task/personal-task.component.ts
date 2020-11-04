@@ -44,6 +44,8 @@ export class PersonalTaskComponent implements OnInit {
         this.fillCurrentPersonalTasks(tempArr);
       }
     }
+    else
+      console.log('no todays task');
   }
 
   onCheckboxChecked(args: EventData) {
@@ -96,7 +98,7 @@ export class PersonalTaskComponent implements OnInit {
       if (+task[3] === 1)
         textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
       else
-        textField.css = "label {width: 80%; font-size: 20}";
+        textField.css = "textfield {width: 80%; font-size: 20}";
       textField.id = task[0];
       textField.on("ontextChange", () => {
         (<Button>(this.saveChangesButton.nativeElement)).visibility = 'visible';
@@ -152,16 +154,15 @@ export class PersonalTaskComponent implements OnInit {
     }
   }
 
-  //нужно сделать чтобы при нажатии на кнопку у меня изначально менялся offset, а не после изменения менялся для следующего действия
-
 
   hasFirst = false;
   async onPrev() {
+    console.log('on prev');
     this.isToday = false;
     let tasksAndDate;
     if (!this.hasExistedTasks && !this.hasFirst) {
-      tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset)));
       console.log('no today task. offset: ', this.currentIDOffset);
+      tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset)));
       this.hasFirst = true;
     }
     else if (!this.hasExistedTasks && this.hasFirst) {
@@ -174,7 +175,12 @@ export class PersonalTaskComponent implements OnInit {
       this.currentIDOffset--;
       tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset)));
     }
-    if (tasksAndDate !== null) {
+    if (tasksAndDate === undefined) {
+      console.log('there is nothing DB I do not do anything!');
+      this.isToday = true;
+      this.hasFirst = false;
+    }
+    else if (tasksAndDate !== null) {
       console.log('tasks not null. offset: ', this.currentIDOffset);
       (<FlexboxLayout>this.stackRef.nativeElement).removeChildren();
       this.dateString = tasksAndDate.date;
@@ -191,12 +197,15 @@ export class PersonalTaskComponent implements OnInit {
   async onNext() {
     let tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset + 1)));
     //переходим на текущий день без созданного списка
-    if (tasksAndDate === null && !this.hasExistedTasks) {
+    if ((tasksAndDate === null || tasksAndDate === undefined) && !this.hasExistedTasks) {
       this.currentIDOffset = 0;
       this.hasFirst = false;
       this.isToday = true;
       (<FlexboxLayout>this.stackRef.nativeElement).removeChildren();
       this.dateString = this.selectedDate.getUTCFullYear() + '-' + (this.selectedDate.getUTCMonth() + 1) + '-' + (this.selectedDate.getUTCDate());
+    }
+    else if (tasksAndDate === undefined) {
+      console.log('there is nothing DB I do not do anything!');
     }
     else if (tasksAndDate !== null) {
       tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset + 1)));
@@ -260,6 +269,8 @@ export class PersonalTaskComponent implements OnInit {
     }
     console.log('task for edit', tasksForEdit);
     let res = <string>await this.dbService.editCurrentTasks(tasksForEdit);
-    console.log(res);
+    (<Button>(this.saveChangesButton.nativeElement)).visibility = 'collapse';
+
+    //console.log(res);
   }
 }

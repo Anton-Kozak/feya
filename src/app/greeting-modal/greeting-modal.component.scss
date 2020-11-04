@@ -8,7 +8,6 @@
 
 .text-div {
     background-color: transparent;
-    border: 1 solid red;
     border-radius: 20;
     padding: 30;
     opacity: 0;
@@ -25,7 +24,7 @@
 
 .text-div Label {
     opacity: 0;
-    font-size: 20;
+    font-size: 30;
     text-align: center;
     font-weight: bold;
     color: black;
@@ -34,6 +33,7 @@
     animation-delay: 2s;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    font-family: 'Bellota', 'Bellota-Bold', cursive;
 }
 
 .text-div Button {

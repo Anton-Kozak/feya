@@ -456,15 +456,24 @@ export class DatabaseService {
     return new Promise(async resolve => {
       if (this.currentIDForPersonalTasks === null) {
         this.currentIDForPersonalTasks = <number>await this.getLastId();
+        if (this.currentIDForPersonalTasks === null) {
+          console.log('this.currentIDForPersonalTasks is null because there is no entries in DB?');
+          return resolve(undefined);
+        }
         console.log(this.currentIDForPersonalTasks);
       }
       this.getdbConnection().then(db => {
         let id = this.currentIDForPersonalTasks + offset
         db.all(`select * from personal_tasks where task_id = ${id}`).then(t => {
+          console.log('tasks undefined', t);
           if (t.length > 0) {
             db.all(`select date from personal_tasks_table where id = ${id}`).then(date => {
-              this.tasksAndDate = { date: date[0][0], tasks: t };
-              return resolve(this.tasksAndDate);
+              if (date !== null) {
+                this.tasksAndDate = { date: date[0][0], tasks: t };
+                return resolve(this.tasksAndDate);
+              }
+              else
+                return resolve(null);
             });
           }
           else {
@@ -481,13 +490,16 @@ export class DatabaseService {
       this.getdbConnection().then(db => {
         //console.log('get to db');
         db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
-          db.all(`select * from personal_tasks where task_id = ${res[0][0]}`).then(t => {
-            //console.log('res:', res, 't ', t);
-            if (t.length > 0) {
-              //console.log('set current id to ', res[0][0]);
-              resolve(res[0][0]);
-            }
-          })
+          if (!res as undefined) {
+            db.all(`select * from personal_tasks where task_id = ${res[0][0]}`).then(t => {
+              //console.log('res:', res, 't ', t);
+              if (t.length > 0) {
+                //console.log('set current id to ', res[0][0]);
+                resolve(res[0][0]);
+              }
+            })
+          }
+          resolve(null);
         });
       });
     })
