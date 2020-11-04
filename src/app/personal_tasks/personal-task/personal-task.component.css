@@ -27,6 +27,14 @@
         margin: 10;
     }
     
+    .buttons .w {
+        width: 65%;
+    }
+    
+    .buttons .ww {
+        width: 75%;
+    }
+    
     .create-list {
         width: auto;
         border-radius: 15;

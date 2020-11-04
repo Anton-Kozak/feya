@@ -241,13 +241,20 @@ export class PersonalTaskComponent implements OnInit {
     //flag to show edit button for adding new fields to current day
   }
 
-  onAddNewCurrentTasks() {
+  async onAddNewCurrentTasks() {
     for (let i = 0; i < this.textfields; i++) {
       let text: TextField = (<TextField>(<FlexboxLayout>this.stackRef.nativeElement).getViewById("new_" + i));
       //проверить на пустые строки
-      this.dbService.addPersonalTaskForCurrentDay(text.text);
-      console.log(text.text, i);
+      let task = (<PersonalTask>(await this.dbService.addPersonalTaskForCurrentDay(text.text)));
+      if (task !== null) {
+        this.addNewTaskToDisplay(task);
+        this.currentPersonalTasks.push(task);
+        (<FlexboxLayout>this.stackRef.nativeElement).removeChild(text);
+      }
+      //this.dbService.addPersonalTaskForCurrentDay(text.text);
+      //console.log(text.text, i);
     }
+    this.showAddNewCurrentTasks = false;
   }
 
   async onEdit() {
@@ -272,5 +279,37 @@ export class PersonalTaskComponent implements OnInit {
     (<Button>(this.saveChangesButton.nativeElement)).visibility = 'collapse';
 
     //console.log(res);
+  }
+
+
+
+  addNewTaskToDisplay(task: PersonalTask) {
+    let flex: FlexboxLayout = new FlexboxLayout();
+    flex.justifyContent = "center";
+    flex.alignItems = "center";
+    let textField = new TextField();
+    textField.text = task.task;
+    console.log('text from task', task[2], 'text from textfield', textField.text);
+    textField.css = "textfield {width: 80%; font-size: 20}";
+    textField.id = task.id.toString();
+    textField.on("ontextChange", () => {
+      (<Button>(this.saveChangesButton.nativeElement)).visibility = 'visible';
+    })
+    let checkBox = new CheckBox();
+    checkBox.checked = false;
+    checkBox.id = 'ch' + task.id.toString();
+    checkBox.on("checkedChange", (args) => {
+      let status = args.object.get('checked') === true ? 1 : 0;
+      let id = (<string>(args.object.get('id'))).replace("ch", '');
+      if (status === 1)
+        textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
+      else {
+        textField.css = "textfield {width: 80%; font-size: 20}";
+      }
+      this.dbService.changeCompleteOnTask(status, id);
+    });
+    flex.addChild(textField);
+    flex.addChild(checkBox);
+    (<FlexboxLayout>this.stackRef.nativeElement).addChild(flex);
   }
 }

@@ -436,11 +436,15 @@ export class DatabaseService {
   }
 
   addPersonalTaskForCurrentDay(task: string) {
-    this.getdbConnection().then(db => {
-      db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
-        console.log(`I add: ${res[0][0]}', '${task}`);
-        db.execSQL(`insert into personal_tasks (task_id, task, is_complete) values ('${res[0][0]}', '${task}', 0)`);
-      })
+    return new Promise(resolve => {
+      this.getdbConnection().then(db => {
+        db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
+          db.execSQL(`insert into personal_tasks (task_id, task, is_complete) values ('${res[0][0]}', '${task}', 0)`).then(id => {
+            let newTask: PersonalTask = { id: id, task_id: res[0][0], task: task, is_complete: 0 };
+            return resolve(newTask);
+          });
+        });
+      });
     });
   }
 
