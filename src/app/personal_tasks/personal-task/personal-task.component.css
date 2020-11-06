@@ -86,3 +86,7 @@
         font-family: "CormorantGaramond-Medium";
         padding-bottom: 20;
     }
+    
+    TextField:disabled {
+        color: red;
+    }

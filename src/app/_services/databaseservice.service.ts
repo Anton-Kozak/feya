@@ -459,7 +459,9 @@ export class DatabaseService {
   getCurrentIDForPersonalTasks(offset: number) {
     return new Promise(async resolve => {
       if (this.currentIDForPersonalTasks === null) {
+        console.log('async start');
         this.currentIDForPersonalTasks = <number>await this.getLastId();
+        console.log('async end', this.currentIDForPersonalTasks);
         if (this.currentIDForPersonalTasks === null) {
           console.log('this.currentIDForPersonalTasks is null because there is no entries in DB?');
           return resolve(undefined);
@@ -492,18 +494,24 @@ export class DatabaseService {
   getLastId() {
     return new Promise(resolve => {
       this.getdbConnection().then(db => {
+        console.log('async inside');
         //console.log('get to db');
         db.all("select id from personal_tasks_table order by id desc limit 1").then(res => {
-          if (!res as undefined) {
+          console.log('get last id id of last row', res.length);
+          if (res.length > 0) {
+            console.log('res length is not 0');
             db.all(`select * from personal_tasks where task_id = ${res[0][0]}`).then(t => {
-              //console.log('res:', res, 't ', t);
+              console.log('res:', res, 't ', t);
               if (t.length > 0) {
-                //console.log('set current id to ', res[0][0]);
-                resolve(res[0][0]);
+                console.log('set current id to ', res[0][0]);
+                return resolve(res[0][0]);
               }
             })
           }
-          resolve(null);
+          else {
+            console.log('resolve null 1');
+            return resolve(null);
+          }
         });
       });
     })

@@ -65,14 +65,17 @@ export class PersonalTaskComponent implements OnInit {
     }
     else {
       for (const task of arr) {
+        console.log('previous complete day');
         let flex: FlexboxLayout = new FlexboxLayout();
         flex.alignItems = "center";
         let textField = new Label();
         textField.text = task[2];
-        if (+task[3] === 1)
-          textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
-        else
+        if (+task[3] === 1){
+          textField.css = "label {width: 80%; font-size: 20; text-decoration: line-through}";
+        }
+        else{
           textField.css = "label {width: 80%; font-size: 20}";
+        }
         textField.id = task[0];
         let checkBox = new CheckBox();
         checkBox.checked = +task[3] === 1 ? true : false;
@@ -95,10 +98,14 @@ export class PersonalTaskComponent implements OnInit {
       flex.alignItems = "center";
       let textField = new TextField();
       textField.text = task[2];
-      if (+task[3] === 1)
-        textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
-      else
+      if (+task[3] === 1){
+        textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through;}";
+        textField.editable = false;
+      }
+      else{
         textField.css = "textfield {width: 80%; font-size: 20}";
+        textField.editable = true;
+      }
       textField.id = task[0];
       textField.on("ontextChange", () => {
         (<Button>(this.saveChangesButton.nativeElement)).visibility = 'visible';
@@ -109,10 +116,13 @@ export class PersonalTaskComponent implements OnInit {
       checkBox.on("checkedChange", (args) => {
         let status = args.object.get('checked') === true ? 1 : 0;
         let id = (<string>(args.object.get('id'))).replace("ch", '');
-        if (status === 1)
+        if (status === 1) {
           textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
+          textField.editable = false;
+        }
         else {
           textField.css = "textfield {width: 80%; font-size: 20}";
+          textField.editable = true;
         }
         this.dbService.changeCompleteOnTask(status, id);
       });
@@ -163,6 +173,7 @@ export class PersonalTaskComponent implements OnInit {
     if (!this.hasExistedTasks && !this.hasFirst) {
       console.log('no today task. offset: ', this.currentIDOffset);
       tasksAndDate = (<TasksAndDate>(await this.dbService.getCurrentIDForPersonalTasks(this.currentIDOffset)));
+      console.log('no today task. tasks: ', tasksAndDate);
       this.hasFirst = true;
     }
     else if (!this.hasExistedTasks && this.hasFirst) {
@@ -177,6 +188,7 @@ export class PersonalTaskComponent implements OnInit {
     }
     if (tasksAndDate === undefined) {
       console.log('there is nothing DB I do not do anything!');
+
       this.isToday = true;
       this.hasFirst = false;
     }
@@ -251,8 +263,6 @@ export class PersonalTaskComponent implements OnInit {
         this.currentPersonalTasks.push(task);
         (<FlexboxLayout>this.stackRef.nativeElement).removeChild(text);
       }
-      //this.dbService.addPersonalTaskForCurrentDay(text.text);
-      //console.log(text.text, i);
     }
     this.showAddNewCurrentTasks = false;
   }
@@ -301,10 +311,13 @@ export class PersonalTaskComponent implements OnInit {
     checkBox.on("checkedChange", (args) => {
       let status = args.object.get('checked') === true ? 1 : 0;
       let id = (<string>(args.object.get('id'))).replace("ch", '');
-      if (status === 1)
+      if (status === 1){
         textField.css = "textfield {width: 80%; font-size: 20; text-decoration: line-through}";
+        textField.editable = false;
+      }
       else {
         textField.css = "textfield {width: 80%; font-size: 20}";
+        textField.editable = true;
       }
       this.dbService.changeCompleteOnTask(status, id);
     });
